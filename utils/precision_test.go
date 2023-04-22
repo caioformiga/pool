@@ -9,14 +9,17 @@ import (
 
 func TestFormatManyPrecisionToString(t *testing.T) {
 	assert := assert.New(t)
-	floatPrecision := 13
 
-	t.Run("With 0 values", func(t *testing.T) {
+	t.Run("With empty slice", func(t *testing.T) {
+		floatPrecision := 13
+
 		formatedValues := FormatManyPrecisionToString([]float64{}, floatPrecision)
 		assert.Len(formatedValues, 0)
 	})
 
 	t.Run("With 0 values", func(t *testing.T) {
+		floatPrecision := 13
+
 		apr := 0.0
 		avgDailyRewards := 0.0
 		cumulativeFee := 0.0
@@ -27,7 +30,8 @@ func TestFormatManyPrecisionToString(t *testing.T) {
 		assert.Len(formatedValues, 4)
 	})
 
-	t.Run("With 4 values", func(t *testing.T) {
+	t.Run("With many values", func(t *testing.T) {
+		floatPrecision := 13
 
 		apr := 100.0
 		avgDailyRewards := apr / 365
@@ -61,7 +65,7 @@ func TestUnit_FormatMinPrecisionToString(t *testing.T) {
 			assert.Contains(strFormatedValues, ".")
 
 			parts := strings.Split(strFormatedValues, ".")
-			assert.GreaterOrEqual(len(parts), 2) // parts is {"integer" ; "digits"
+			assert.GreaterOrEqual(len(parts), 2) // parts: {"integer" ; "digits"
 
 			digits := parts[1]
 			assert.Equal(len(digits), 1)
@@ -73,7 +77,7 @@ func TestUnit_FormatMinPrecisionToString(t *testing.T) {
 			assert.Contains(strFormatedValues, ".")
 
 			parts := strings.Split(strFormatedValues, ".")
-			assert.GreaterOrEqual(len(parts), 2) // parts is {"integer" ; "digits"
+			assert.GreaterOrEqual(len(parts), 2) // parts: {"integer" ; "digits"
 
 			digits := parts[1]
 			assert.Equal(len(digits), 15)
